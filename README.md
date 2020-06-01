@@ -1,5 +1,5 @@
 # student-directory #
-** What have we here? **
+**What have we here?**
 
 Student directory allows you to manage the list of students enrolled at *Villains Academy*.
 
