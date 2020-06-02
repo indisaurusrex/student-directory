@@ -1,22 +1,19 @@
 def input_students
-  puts "Please enter the names of the students, followed by their height and favourite hobby"
-  puts "To finish, just hit return twice on an empty name"
+  puts "Please enter the names and cohorts of the students,".center(75)
+  puts "To finish, just hit return twice at next".center(75)
   #create an empty array
   students = []
-  # get the first name, height and favourite hobby
   puts "Name:"
   name = gets.chomp
-  # while name is not empty, repeat this code
   while !name.empty? do
-    puts "Height:"
-    height = gets.chomp
-    puts "Hobby:"
-    hobby = gets.chomp
-    #add the student hash to the array
-    students << {name: name, cohort: :november, height: height, hobby: hobby}
+    puts "Cohort:"
+    cohort = gets.chomp
+      if cohort == ""
+        cohort = "november"
+      end
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
-    #get another name from the user
-    puts "Next name:"
+    puts "Name:"
     name = gets.chomp
   end
   #return the array of students
@@ -28,11 +25,8 @@ def print_header
 end
 # print the students and their cohort, height and hobby, centred
 def print(students)
-  count = 0
-  until count == students.length
-    puts "#{(count + 1)}. #{students[count][:name]} (#{students[count][:cohort]} cohort)".center(75)
-    puts "spends time doing #{students[count][:hobby]} and is #{students[count][:height]} tall".center(75)
-    count += 1
+  students.each_with_index do |student, index|
+    puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)".center(75, "...")
   end
 end
 def print_footer(students)
