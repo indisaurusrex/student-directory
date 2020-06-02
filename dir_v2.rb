@@ -26,11 +26,11 @@ def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
-# print the students using an until loop
+# print the students using an until loop, including their hobby and height
 def print(students)
   count = 0
   until count == students.length
-    puts "#{(count + 1)}. #{students[count][:name]} (#{students[count][:cohort]} cohort)"
+    puts "#{(count + 1)}. #{students[count][:name]} (#{students[count][:cohort]} cohort) spends time doing #{students[count][:hobby]} and is #{students[count][:height]} tall"
     count += 1
   end
 end
