@@ -11,8 +11,13 @@ def input_students
       if cohort == ""
         cohort = "november"
       end
-    students << {name: name, cohort: cohort.to_sym}
-    puts "Now we have #{students.count} students"
+    puts "check your answer, type yes for correct, type no to redo"
+    puts "name = #{name}, cohort = #{cohort}"
+    check = gets.chomp
+    if check == "yes"
+      students << {name: name, cohort: cohort.to_sym}
+      puts "Now we have #{students.count} students"
+    end
     puts "Name:"
     name = gets.chomp
   end
