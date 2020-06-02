@@ -23,19 +23,20 @@ def input_students
   students
 end
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(75)
+  puts "-------------".center(75)
 end
-# print the students using an until loop, including their hobby and height
+# print the students and their cohort, height and hobby, centred
 def print(students)
   count = 0
   until count == students.length
-    puts "#{(count + 1)}. #{students[count][:name]} (#{students[count][:cohort]} cohort) spends time doing #{students[count][:hobby]} and is #{students[count][:height]} tall"
+    puts "#{(count + 1)}. #{students[count][:name]} (#{students[count][:cohort]} cohort)".center(75)
+    puts "spends time doing #{students[count][:hobby]} and is #{students[count][:height]} tall".center(75)
     count += 1
   end
 end
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(75)
 end
 
 students = input_students
