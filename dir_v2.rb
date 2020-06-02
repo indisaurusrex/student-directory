@@ -21,9 +21,11 @@ def print_header
   puts "-------------"
 end
 def print(students)
-  # print the number starting from 1 before the student name
+  # print the students only if their name begins with H 
   students.each_with_index do |student, index|
-    puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name].to_s[0] == "H"
+      puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 def print_footer(students)
