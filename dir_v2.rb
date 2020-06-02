@@ -21,9 +21,10 @@ def print_header
   puts "-------------"
 end
 def print(students)
-  # print the students only if their name begins with H 
+  # print the students only if their name is shorter than 12 chars
+  puts "The following students have names under 12 characters long:"
   students.each_with_index do |student, index|
-    if student[:name].to_s[0] == "H"
+    if student[:name].length < 12
       puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
