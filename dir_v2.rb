@@ -41,7 +41,7 @@ def print_header
   puts "-------------".center(75)
 end
 
-def print_students
+def print_students_list
     @students.each do |student|
       puts "#{student[:name]} : #{student[:cohort]} cohort".center(75)
     end
@@ -76,7 +76,7 @@ end
 
 def show_students
   print_header
-  print_students
+  print_students_list
   print_footer
 end
 
