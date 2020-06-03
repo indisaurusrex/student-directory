@@ -32,8 +32,16 @@ def print_footer(names)
   print "Overall, we have #{names.count} great students"
 end
 
+def print_if_students(students)
+  if students.length != 0
+    print_header
+    print_students(students)
+    print_footer(students)
+  else
+    puts "We don't have any students yet"
+  end
+end
+
 
 students = input_students
-print_header
-print_students(students)
-print_footer(students)
+print_if_students(students)
