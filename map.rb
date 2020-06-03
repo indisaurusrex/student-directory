@@ -54,17 +54,6 @@ end
   
 end
 
-# print how many students we have overall
-# def print_footer(students)
-#   if students.count == 1
-#     puts "Overall, we have 1 great student".center(75)
-#   else
-#     puts "Overall, we have #{students.count} great students".center(75)
-#   end
-# end
-
 students = input_students
 print_header
 sort_into_cohorts(students)
-#print_footer(students)
-# sort_into_cohorts
