@@ -46,16 +46,9 @@ end
 # add the name to the cohort key
 def sort_into_cohorts(students)
 # we want to create a new hash called cohorts
-  cohorts = {}
-  # iterate through the existing array
   puts "Which cohort would you like to see?"
   choice = gets.chomp.to_sym
-  if students.include?(choice) == true
-    students.map { |name, cohort| name.to_s }
-  else
-    puts "Sorry there's nobody in that cohort"
-  end
-  print students[choice]
+  students.map! { |student| puts student[:name] if student[:cohort] == choice }
 end
 
 # print how many students we have overall
@@ -70,5 +63,5 @@ end
 students = input_students
 print_header
 sort_into_cohorts(students)
-print_footer(students)
+#print_footer(students)
 # sort_into_cohorts
