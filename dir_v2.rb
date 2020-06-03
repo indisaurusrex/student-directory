@@ -13,10 +13,9 @@ def input_students
       if cohort == ""
         cohort = "november"
       end
-
+    # only commit the information to the array if user is happy
     puts "Check your answer, type yes for correct, type no to redo".center(75)
     puts "name = #{name}, cohort = #{cohort}".center(75)
-    # only commit the information to the array if user is happy
     check = gets.chomp
     if check == "yes"
       students << {name: name, cohort: cohort.to_sym}
@@ -38,12 +37,13 @@ def print_header
   puts "The students of Villains Academy".center(75)
   puts "-------------".center(75)
 end
-# print the students and their cohort, centred
-def print(students)
-  students.each_with_index do |student, index|
-    puts "#{(index + 1)}. #{student[:name]} (#{student[:cohort]} cohort)".center(75)
-  end
+
+def print_students(students)
+    students.each do |student|
+      puts "#{student[:name]} : (#{student[:cohort]}) cohort".center(75)
+    end
 end
+
 # print how many students we have overall
 def print_footer(students)
   if students.count == 1
@@ -55,5 +55,6 @@ end
 
 students = input_students
 print_header
-print(students)
+print_students(students)
 print_footer(students)
+# sort_into_cohorts
