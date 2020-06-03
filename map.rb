@@ -14,10 +14,10 @@ def input_students
         cohort = "november"
       end
     # only commit the information to the array if user is happy
-    puts "Check your answer, type yes for correct, type no to redo".center(75)
-    puts "name = #{name}, cohort = #{cohort}".center(75)
-    check = gets.chomp
-    if check == "yes"
+    # puts "Check your answer, type yes for correct, type no to redo".center(75)
+    # puts "name = #{name}, cohort = #{cohort}".center(75)
+    # check = gets.chomp
+    # if check == "yes"
       students << {name: name, cohort: cohort.to_sym}
       # confirm how many students are in the array now
       if students.length == 1
@@ -25,7 +25,7 @@ def input_students
       else
         puts "Now we have #{students.count} students".center(75)
       end
-    end
+    # end
     # get more students
     puts "Name:"
     name = gets.chomp
@@ -44,15 +44,38 @@ def sort_into_cohorts(students)
 # if not, create a new one
 # print the cohort subarray chosen
 
-  cohorts = [["june", "india", "arav", "matthew"],["july", "sarah"]]
+  cohorts = []
+  students.sort_by!{ |student| student[:cohort] }
   students.map { |student| 
-    if cohorts.include?("june") 
-      puts "yep" 
-    else
-      puts "nope"
-    end }
+    x = 0
+    group = 0
+    if x == 0
+      cohorts.push([student[:cohort]])
+      x += 1
+    elsif student[x][:cohort] == student[x-1][:cohort]
+      puts "does it?"
+      cohorts[group].push([student[:name]])
+    end
+  }
+    # if cohorts[0][0] != student[:cohort]
+    #   cohorts[0].push(student[:cohort])
+    # else
+    #   "nope"
+    # end
+
+    # cohorts.each do |cohort|
+    #   if !cohort.include?(student[:cohort])
+    #     cohorts.push([student[:cohort]])
+    #   else
+    #     cohort.push(student[:name])
+    #   end
+      
+      #cohort.push(student[:name])
+    
+    print cohorts
   #puts "Which cohort would you like to see?"
-  # choice = gets.chomp.to_sym
+   # choice = gets.chomp.to_sym
+    #puts cohorts[choice]
 end
 
 # print how many students we have overall
