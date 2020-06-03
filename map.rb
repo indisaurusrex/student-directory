@@ -39,43 +39,19 @@ def print_header
 end
 
 def sort_into_cohorts(students)
-# we want the array to have a subarray per cohort
-# if the subarray for that cohort already exists, add to it
-# if not, create a new one
-# print the cohort subarray chosen
 
-  cohorts = []
-  students.sort_by!{ |student| student[:cohort] }
-  students.map { |student| 
-    x = 0
-    group = 0
-    if x == 0
-      cohorts.push([student[:cohort]])
-      x += 1
-    elsif student[x][:cohort] == student[x-1][:cohort]
-      puts "does it?"
-      cohorts[group].push([student[:name]])
-    end
-  }
-    # if cohorts[0][0] != student[:cohort]
-    #   cohorts[0].push(student[:cohort])
-    # else
-    #   "nope"
-    # end
+choice = String.new
+while true do
 
-    # cohorts.each do |cohort|
-    #   if !cohort.include?(student[:cohort])
-    #     cohorts.push([student[:cohort]])
-    #   else
-    #     cohort.push(student[:name])
-    #   end
-      
-      #cohort.push(student[:name])
-    
-    print cohorts
-  #puts "Which cohort would you like to see?"
-   # choice = gets.chomp.to_sym
-    #puts cohorts[choice]
+  puts "Which cohort would you like to see?"
+  choice = gets.chomp.to_sym
+  if choice == :quit
+    break
+  end
+  s = students.map { |student| student[:name] if student[:cohort] == choice } - [nil]
+  puts s
+end
+  
 end
 
 # print how many students we have overall
