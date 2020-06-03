@@ -38,17 +38,21 @@ def print_header
   puts "-------------".center(75)
 end
 
-
-# if the cohort does not exist on the hash
-# create the cohort as a key
-# add the name to the cohort key
-# if the cohort does exist
-# add the name to the cohort key
 def sort_into_cohorts(students)
-# we want to create a new hash called cohorts
-  puts "Which cohort would you like to see?"
-  choice = gets.chomp.to_sym
-  students.map! { |student| puts student[:name] if student[:cohort] == choice }
+# we want the array to have a subarray per cohort
+# if the subarray for that cohort already exists, add to it
+# if not, create a new one
+# print the cohort subarray chosen
+
+  cohorts = [["june", "india", "arav", "matthew"],["july", "sarah"]]
+  students.map { |student| 
+    if cohorts.include?("june") 
+      puts "yep" 
+    else
+      puts "nope"
+    end }
+  #puts "Which cohort would you like to see?"
+  # choice = gets.chomp.to_sym
 end
 
 # print how many students we have overall
