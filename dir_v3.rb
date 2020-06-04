@@ -84,6 +84,7 @@ def load_students(filename = "students.csv")
     add_students_to_array(name, cohort)
   end
   file.close
+  print_student_count
 end
 
 def try_load_students(filename="students.csv")
@@ -91,7 +92,6 @@ def try_load_students(filename="students.csv")
   if File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
-    print_student_count
   else
     puts "Sorry, #{filename} doesn't exist"
   end
