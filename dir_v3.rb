@@ -78,13 +78,15 @@ def file_choice
     end
 end
 
+# this isn't working for new filenames.
 def save_students
   file_choice
   file = File.open(filename="students.csv", "w")
-  @students.each do |student|
+    @students.each do |student|
     file.puts "#{student[:name]},#{student[:cohort]}"
-  end
-  file.close
+    end
+    file.close 
+  puts "Consider them saved."
 end
 
 def load_students(filename="students.csv")
