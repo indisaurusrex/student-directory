@@ -50,7 +50,7 @@ end
 def show_students
   print_header
   print_students_list
-  print_footer
+  print_student_count
 end
 
 def print_header
@@ -63,11 +63,6 @@ def print_students_list
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
-
-def print_footer
-  puts "Overall, we have #{@students.count} great students"
-end
-
 
 def save_students
   file = File.open("students.csv", "w")
@@ -102,7 +97,7 @@ def add_students_to_array(name, cohort)
 end
 
 def print_student_count
-  puts "Now we have #{@students.count} students"
+  puts "Now we have #{@students.count} great students"
 end
 
 
