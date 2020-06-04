@@ -33,14 +33,18 @@ def process(selection)
 end
 
 def input_students
-  puts "Please enter the name and cohort separated by a comma"
-  puts "To finish, type quit and hit return"
+  print_intro
   while true do
     name, cohort = STDIN.gets.chomp.split(",")
     break if name == "quit"
     add_students_to_array(name, cohort)
-    puts "Now we have #{@students.count} students"
+    print_student_count
   end
+end
+
+def print_intro
+  puts "Please enter the name and cohort separated by a comma"
+  puts "To finish, type quit and hit return"
 end
 
 def show_students
@@ -66,13 +70,9 @@ end
 
 
 def save_students
-  #open the file for writing
   file = File.open("students.csv", "w")
-  # iterate over the array of students
   @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    file.puts "#{student[:name]},#{student[:cohort]}"
   end
   file.close
 end
@@ -80,7 +80,7 @@ end
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
+    name, cohort = line.chomp.split(",")
     add_students_to_array(name, cohort)
   end
   file.close
@@ -91,6 +91,7 @@ def try_load_students(filename="students.csv")
   if File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
+    print_student_count
   else
     puts "Sorry, #{filename} doesn't exist"
   end
@@ -99,6 +100,11 @@ end
 def add_students_to_array(name, cohort)
   @students << {name: name, cohort: cohort.strip.to_sym}
 end
+
+def print_student_count
+  puts "Now we have #{@students.count} students"
+end
+
 
 try_load_students
 interactive_menu

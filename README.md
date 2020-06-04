@@ -19,3 +19,11 @@ _map.rb_ for the exercise relating to mapping students to cohorts
 ```shell
 ruby directory.rb
 ```
+
+Commits vs exercises
+Use this list to see the code progress through the exercises and steps provided in the curriculum
+
+-- Commit -- Exercise -- 
+
+* 83ac9b6 = Step 14, 1.
+* 75cca83 = Step 14, 2. 
