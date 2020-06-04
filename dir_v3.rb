@@ -24,11 +24,11 @@ def process(selection)
     puts "You chose to show the students we have..."
     show_students
   when "3"
+    puts "You chose save, where to though?"
     save_students
-    puts "You chose save, that's all done now"
   when "4"
     puts "You've chosen load, we're on it..."
-    load_students
+    load_students(file_choice)
   when "9"
     puts "See you later!"
     exit # will cause program to terminate
@@ -69,15 +69,25 @@ def print_students_list
   end
 end
 
+def file_choice
+  puts "which existing file do you want to use?"
+    filename = gets.chomp
+    if !File.exists?(filename)
+      puts "sorry that file doesn't exist, please create it first"
+      interactive_menu
+    end
+end
+
 def save_students
-  file = File.open("students.csv", "w")
+  file_choice
+  file = File.open(filename="students.csv", "w")
   @students.each do |student|
     file.puts "#{student[:name]},#{student[:cohort]}"
   end
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename="students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
