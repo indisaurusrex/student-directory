@@ -9,7 +9,8 @@ Student directory allows you to manage the list of students enrolled at *Villain
 
 Notes relating to document functions - assumes you have access to Makers Master Precourse curriculum pages
 _directory.rb_ for week 4 basic directory build
-_dir_v2.rb_ for all other work on the further exercises from step 8
+*dir_v2.rb* for all other work on the further exercises from step 8
+*dir_v3.rb* for all step 14 exercises
 _map.rb_ for the exercise relating to mapping students to cohorts
 
 

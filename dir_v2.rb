@@ -5,11 +5,11 @@ def input_students
   puts "To finish, hit return at 'Name:'".center(75)
   # get the first name
   puts "Name:"
-  name = gets.chomp
+  name = STDIN.gets.chomp
 
   while !name.empty? do
     puts "Cohort:"
-    cohort = gets.chomp!
+    cohort = STDIN.gets.chomp!
     # if the user types nothing for cohort, default to Nov
     if cohort == ""
       cohort = "november"
@@ -19,7 +19,7 @@ def input_students
     puts "Check your answer, type yes if correct, type no to redo".center(75)
     puts "name = #{name}, cohort = #{cohort}".center(75)
 
-    check = gets.chop
+    check = STDIN.gets.chop
     if check == "yes"
       @students << {name: name, cohort: cohort.to_sym}
       # confirm how many students are in the array now
@@ -32,7 +32,7 @@ def input_students
     end
     # get more students
     puts "Name:"
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
 end
 
@@ -71,13 +71,6 @@ def show_student_stories
 
 end
 
-def interactive_menu
-  loop do
-    print_menu
-    process(gets.chomp)
-  end
-end
-
 def save_students
   file = File.open("students.csv", "w") #open the file for writing
   # iterate over the array of students
@@ -89,13 +82,32 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r") #open the file for reading
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r") 
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+end
+
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{students.count} from #{filename}"
+  else
+    puts "Sorry #{filename} does not exist"
+    exit
+  end
+end
+
+def interactive_menu
+  loop do
+    print_menu
+    process(STDIN.gets.chomp)
+  end
 end
 
 def print_menu
@@ -126,4 +138,5 @@ def process(selection)
   end
 end
 
+try_load_students
 interactive_menu
