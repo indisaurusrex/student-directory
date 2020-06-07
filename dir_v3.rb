@@ -3,8 +3,8 @@
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to a csv file"
+  puts "4. Load the list from a csv file"
   puts "9. Exit" # 9 bc there'll be more later
 end
 
@@ -25,10 +25,12 @@ def process(selection)
     show_students
   when "3"
     puts "You chose save, where to though?"
-    save_students
+    file_choice
+    save_students(gets.chomp)
   when "4"
     puts "You've chosen load, we're on it..."
-    load_students(file_choice)
+    file_choice
+    load_students(gets.chomp)
   when "9"
     puts "See you later!"
     exit # will cause program to terminate
@@ -71,17 +73,12 @@ end
 
 def file_choice
   puts "which existing file do you want to use?"
-    filename = gets.chomp
-    if !File.exists?(filename)
-      puts "sorry that file doesn't exist, please create it first"
-      interactive_menu
-    end
+  puts Dir["*.csv"]
 end
 
 # this isn't working for new filenames.
-def save_students
-  file_choice
-  file = File.open(filename="students.csv", "w")
+def save_students(filename)
+  file = File.open(filename, "w")
     @students.each do |student|
     file.puts "#{student[:name]},#{student[:cohort]}"
     end
@@ -89,22 +86,24 @@ def save_students
   puts "Consider them saved."
 end
 
-def load_students(filename="students.csv")
+def load_students(filename)
+  # filename = user selection from directory
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     add_students_to_array(name, cohort)
   end
   file.close
+  puts "You've successfully loaded your list from #{filename}"
   print_student_count
 end
 
-def try_load_students(filename="students.csv")
-  return if filename.nil?
-  if File.exists?(filename)
+def default_startup_file
+  ARGV.first.nil? ? filename = "students.csv" : filename = ARGV.first
+  if File.exists?(filename) # if it exists
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
-  else
+  else # if it doesn't exist
     puts "Sorry, #{filename} doesn't exist"
   end
 end
@@ -118,5 +117,5 @@ def print_student_count
 end
 
 
-try_load_students
+default_startup_file
 interactive_menu
